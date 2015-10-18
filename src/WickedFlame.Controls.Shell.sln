@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WickedFlame.Controls.Shell", "WickedFlame.Controls.Shell\WickedFlame.Controls.Shell\WickedFlame.Controls.Shell.csproj", "{B12B2C92-C5CC-4AFE-833F-F02DD06BC6A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Solution Items", "01 Solution Items", "{2B4BB5FC-0E3F-4D75-8E3B-5634B4E76762}"
+	ProjectSection(SolutionItems) = preProject
+		NuGetPackageManager\WickedFlame.Controls.Shell.nuspec = NuGetPackageManager\WickedFlame.Controls.Shell.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
