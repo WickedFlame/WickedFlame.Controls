@@ -1,0 +1,12 @@
+﻿<wf:Window x:Class="WickedFlame.Controls.Shell.Samples.MainWindow"
+        xmlns:wf="http://schemas.wickedflame.ch/2013/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" Icon="\resources\Configuration.ico" ><!---->
+    <Grid >
+        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Command="{Binding ShowSubviewCommand}">
+            <TextBlock Text="Show Subview" Margin="20,10,20,10"/>
+        </Button>
+        <ContentPresenter Content="{Binding Content}" />
+    </Grid>
+</wf:Window>

@@ -1,0 +1,119 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:wickedflame.controls.shell"
+    >
+    <!--xmlns:chrome="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+    xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"-->
+
+    <Style x:Key="SimpleNoBorderButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="NoBorder_HeaderCommandIntBorder" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="2" Margin="0" Opacity="0.8">
+                        <ContentPresenter ContentSource="Content"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="NoBorder_HeaderCommandIntBorder" Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style TargetType="{x:Type local:Window}">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="AllowsTransparency" Value="true"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <!--<Setter Property="Background" Value="Transparent"/>-->
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <!--<shell:WindowChrome
+                        ResizeBorderThickness="6"
+                        CaptionHeight="40"
+                        CornerRadius="6,6,6,6"
+                        GlassFrameThickness="0"/>-->
+                <WindowChrome ResizeBorderThickness="6" CornerRadius="0" CaptionHeight="17" GlassFrameThickness="0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Window}">
+
+                    <AdornerDecorator>
+                        <!--<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                            <Border.BitmapEffect>
+                                <DropShadowBitmapEffect Color="Black" Direction="320" ShadowDepth="10" Opacity=".5" Softness="9" />
+                            </Border.BitmapEffect>-->
+
+                        <Grid>
+                            <Border Background="Black" Margin="6">
+                                <Border.Effect>
+                                    <BlurEffect Radius="15" />
+                                </Border.Effect>
+                            </Border>
+
+                            <Grid Margin="4" Background="{TemplateBinding Background}">
+
+                                <ContentPresenter Content="{TemplateBinding Content}" Margin="0,17,0,0"/>
+
+                                <!-- Title -->
+                                <Grid VerticalAlignment="Top" Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(WindowChrome.WindowChrome).ResizeBorderThickness}" Opacity="0.6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title}" FontWeight="Heavy" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                </Grid>
+
+                                <!-- Buttons in the Header -->
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,0,0" x:Name="MainGrid" Opacity="0.8">
+                                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.MinimizeWindowCommand}" Style="{StaticResource SimpleNoBorderButtonStyle}" Margin="3,8,2,0" x:Name="PART_MinimizeButton">
+                                        <Path Data="M 0,6 L 8,6" Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True" StrokeThickness="2" VerticalAlignment="Center"/>
+                                    </Button>
+                                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.RestoreWindowCommand}" Style="{StaticResource SimpleNoBorderButtonStyle}" Margin="3,8,2,0" x:Name="PART_RestoreButton" Visibility="Collapsed">
+                                        <Grid>
+                                            <Path Data="M 2,0 L 8,0 L 8,6 L 2,6 Z" Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                            <Path Data="M 0,3 L 6,3 L 6,8 L 0,8 Z" Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True" VerticalAlignment="Center" StrokeThickness="2"/>
+                                        </Grid>
+                                    </Button>
+
+                                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.MaximizeWindowCommand}" Style="{StaticResource SimpleNoBorderButtonStyle}" Margin="3,8,2,0" x:Name="PART_MaxButton">
+                                        <Path Data="M 0,0 L 8,0 L 8,7 L 0,7 Z M 0,1 L 8,1 M 0,2 L 8,2" Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                    </Button>
+                                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Command="{x:Static SystemCommands.CloseWindowCommand}" Style="{StaticResource SimpleNoBorderButtonStyle}" Margin="3,8,15,0">
+                                        <Path Data="M 0,0 L 8,8 M 8,0 L 0,8" Stroke="{TemplateBinding Foreground}" SnapsToDevicePixels="True" VerticalAlignment="Center"/>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </AdornerDecorator>
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Path=WindowState, RelativeSource={RelativeSource AncestorType={x:Type local:Window}}}" Value="Maximized">
+                            <Setter TargetName="PART_MaxButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Visible"/>
+                            <!--<Setter Property="BorderThickness" Value="{Binding Source={x:Static SystemParameters2.Current}, Path=WindowResizeBorderThickness}"/>-->
+                            <Setter TargetName="MainGrid" Property="Margin" Value="0,5,0,0"/>
+                        </DataTrigger>
+                        <!--<DataTrigger Binding="{Binding Path=ResizeMode, RelativeSource={RelativeSource AncestorType={x:Type local:Window}}}" Value="NoResize">
+                            <Setter TargetName="PART_MaxButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>-->
+                        <Trigger Property="ResizeMode" Value="NoResize">
+                            <Setter TargetName="PART_MaxButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_RestoreButton" Property="Visibility" Value="Collapsed"/>
+                            <Setter TargetName="PART_MinimizeButton" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

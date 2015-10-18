@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>WickedFlame.Controls.Shell</id>
+    <version>1.2.0</version>
+    <title>WickedFlame Controls Shell</title>
+    <authors>Christian Walpen</authors>
+    <owners>Christian Walpen</owners>
+    <licenseUrl>https://github.com/WickedFlame/WickedFlame.Controls/blob/master/LICENSE</licenseUrl>
+    <projectUrl>http://wickedflame.github.io/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>@ WickedFlame 2015</copyright>
+    <description>
+A WPF Shell/Window
+    </description>
+    <summary>A WPF Shell/Window</summary>
+    <tags>WickedFlame Controls Shell Window</tags>
+  </metadata>
+  <files>
+    <file src="WickedFlame.Controls.Shell\WickedFlame.Controls.Shell\bin\Release\WickedFlame.Controls.Shell.dll" target="lib\net45\WickedFlame.Controls.Shell.dll" />
+    <file src="WickedFlame.Controls.Shell\WickedFlame.Controls.Shell\bin\Release\WickedFlame.Controls.Shell.XML" target="lib\net45\WickedFlame.Controls.Shell.XML" />
+  </files>
+</package>
